@@ -1,0 +1,9 @@
+EJS SYNTAX for v3.0.1:
+Regarding including partials in EJS view:
+    <% include partials/header %>
+    <% include partials/footer %>
+has been changed to :
+    <%- include("partials/header") %>
+    <%- include("partials/footer") %>
+To update EJS to the newest version:
+    $ npm i -S ejs
