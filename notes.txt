@@ -7,3 +7,15 @@ has been changed to :
     <%- include("partials/footer") %>
 To update EJS to the newest version:
     $ npm i -S ejs
+
+***********************************
+Creating New Campgrounds:
+  Setup new campground POST route
+  Add body-parser
+  Setup route to show form
+  Add basic unstyled form
+INSTALL BODY-PARSER:
+  npm install body-parser --save
+ADD TO APP.JS:
+  app.use(bodyParser.urlencoded({extended: true}));
+  app.set('view engine', 'ejs');
