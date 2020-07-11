@@ -1,11 +1,36 @@
 <%- include('partials/header') %>
 
-<h1>This is the Campgrounds page!</h1>
-<% campgrounds.forEach(function(campground){ %>
-    <div class="">
-      <h4><%= campground.name %></h4>
-      <img src="<%= campground.image %>" alt="camp">
+<div class="container">
+  <header class="jumbotron text-center">
+    <div class="container">
+      <h1>Welcome To Camp App</h1>
+      <p>View our hand-picked campgrounds throughout the US</p>
+      <p>
+        <a class="btn btn-primary btn-lg" href="/campgrounds/new">Add New Campground</a>
+      </p>
     </div>
-<% }); %>
+  </header>
+
+  <!-- <div class="row">
+    <div class="col-lg-12">
+      <h3 class="d-flex justify-content-center">Our Most Popular Sites</h3>
+    </div>
+  </div> -->
+
+  <div class="row text-center flex-wrap">
+    <% campgrounds.forEach(function(campground){ %>
+      <div class="col-md-3 col-sm-6">
+          <div class="img-thumbnail">
+            <img src="<%= campground.image %>" alt="camp">
+
+            <div class="caption">
+              <h4><%= campground.name %></h4>
+            </div>
+          </div>
+      </div>
+    <% }); %>
+  </div>
+
+</div>
 
 <%- include('partials/footer') %>
