@@ -128,6 +128,23 @@ WriteResult({ "nRemoved" : 0 })
 { "_id" : ObjectId("5f0de701ddb8271bd0a4ab80"), "breed" : "daschund" }
 >
 
+TO DROP THE DATABASE:
+db.collection.drop()
+
+> use camp_app
+switched to db camp_app
+> show collections
+campgrounds
+> db.campgrounds.find()
+{ "_id" : ObjectId("5f0e103c91cac70258f37f0c"), "name" : "Honey Bear Cove", "image" : "https://images.pexels.com/photos/1309584/pexels-photo-1309584.jpeg?auto=compress&cs=tinysrgb&h=350", "__v" : 0 }
+> show collections
+campgrounds
+...
+> db.campgrounds.drop()
+true
+> db.campgrounds.find()
+>
+
 Notes about Mongoose - LECTURE 305 colt the web developer bootcamp
 Hi everyone,
 This note covers many different errors and warnings that you may encounter when working with mongoose (covered in the next couple of lectures):
