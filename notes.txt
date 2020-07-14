@@ -19,3 +19,215 @@ INSTALL BODY-PARSER:
 ADD TO APP.JS:
   app.use(bodyParser.urlencoded({extended: true}));
   app.set('view engine', 'ejs');
+
+*******************************************
+LECTURE 302 MONGODB:
+For updated MongoDB installation instructions with GoormIDE, please see the following video:
+>>>here<<<.
+Notes:
+That video also includes instructions for Colt's MySQL course, but you can ignore those and only follow the MongoDB instructions. Annotations are included in the video so it should be clear which instructions to follow.
+You no longer need to follow/enter the commands in the next video, as the ones from the video linked above will have replaced them.
+Additionally, after you're up and running with mongo, be sure to shut down your mongod server each time you're done working. You can do this with ctrl + c
+If you're having any difficulties with the setup and usage of mongodb, then please post a new discussion so we can assist you.
+As a side note: In the Mongo Shell Basics video you'll see Colt use the show collections command which will show something called system.indexes . This will no longer show up in the latest versions of MongoDB. You can read more about this here.
+
+> mongod
+
+> echo "mogod --journal" > mongod
+   creates the mongod file
+> ./mongod  - might show permission denied
+
+> chmod a+x mongod
+> ./mongod
+
+To get into the mongo shell go to new terminal window
+
+> mongo
+
+MONGO COMMANDS:
+
+
+FROM THE POWERSHELL:
+
+PS C:\Users\sherry> cd 'C:\Program Files\MongoDB\Server\4.2\bin'
+PS C:\Program Files\MongoDB\Server\4.2\bin> .\mongo.exe
+MongoDB shell version v4.2.8
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("161340cd-b503-492b-b146-c29223afbeb1") }
+
+PS C:\Program Files\MongoDB\Server\4.2\bin> mongo
+MongoDB shell version v4.2.8
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("a544d16d-cf2e-4499-85e4-6acf176bf0eb") }
+MongoDB server version: 4.2.8
+
+> use campapp
+switched to db campapp
+>
+
+COMMANDS:
+mongod
+mongo
+help
+show dbs
+use
+insert
+find
+update
+remove
+
+
+> show dbs
+admin         0.000GB
+config        0.000GB
+local         0.000GB
+natours-test  0.000GB
+
+> use dogs
+switched to db dogs
+>
+
+> show dbs
+admin         0.000GB
+config        0.000GB
+local         0.000GB
+natours-test  0.000GB
+>
+
+> db.dogs.insert({name: 'Rusty', breed: 'Mutt'})
+WriteResult({ "nInserted" : 1 })
+>
+
+> show collections
+dogs
+>
+
+> db.dogs.find()
+{ "_id" : ObjectId("5f0de701ddb8271bd0a4ab80"), "name" : "Rusty", "breed" : "Mutt" }
+>
+
+> db.dogs.find({name: 'Rusty'})
+{ "_id" : ObjectId("5f0de701ddb8271bd0a4ab80"), "name" : "Rusty", "breed" : "Mutt" }
+>
+> db.dogs.find()
+{ "_id" : ObjectId("5f0de701ddb8271bd0a4ab80"), "name" : "Rusty", "breed" : "Mutt" }
+> db.dogs.find({breed: 'Mutt'})
+{ "_id" : ObjectId("5f0de701ddb8271bd0a4ab80"), "name" : "Rusty", "breed" : "Mutt" }
+> db.dogs.update({name: 'Rusty'}, {breed: 'daschund'})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+>
+> db.dogs.find()
+{ "_id" : ObjectId("5f0de701ddb8271bd0a4ab80"), "breed" : "daschund" }
+>
+> db.dogs.update({name: 'Rusty'}, {$set: {name: 'Tater', isCute: true}})
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+>
+> db.dogs.remove({breed: 'Mutt'})
+WriteResult({ "nRemoved" : 0 })
+> db.dogs.find()
+{ "_id" : ObjectId("5f0de701ddb8271bd0a4ab80"), "breed" : "daschund" }
+>
+
+Notes about Mongoose - LECTURE 305 colt the web developer bootcamp
+Hi everyone,
+This note covers many different errors and warnings that you may encounter when working with mongoose (covered in the next couple of lectures):
+
+
+July 7th, 2020 - Update
+Your mongoose.connect() code should look like this:
+
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/db_name', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('Connected to DB!'))
+.catch(error => console.log(error.message));
+You may not recognize all of the syntax used above, please see below for additional resources:
+Not familiar with const? Learn more here. https://www.youtube.com/watch?v=dzEieWaOJE0
+Not familiar with .then() and .catch()? Learn more here. https://www.youtube.com/watch?v=Hfqqe0CWbCQ
+Not familiar with arrow => functions? Learn more here. https://www.youtube.com/watch?v=thXp0_py9X4
+
+
+April 21st, 2019 - Update
+See here for the official documentation with instructions on how to solve all deprecation warnings with mongoose (listed in previous updates, below).
+
+
+October 14th, 2018 - Update
+If you're getting an error like this: DeprecationWarning: collection.findAndModify is deprecated. Use findOneAndUpdate, findOneAndReplace or findOneAndDelete instead.
+
+then please see here. https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/7282872#questions/5337646
+
+or if you're getting: DeprecationWarning: collection.remove is deprecated. Use deleteOne, deleteMany, or bulkWrite instead.
+
+then see here. https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/7282872#questions/5357964
+
+
+September 18th, 2018 - Update:
+If you're getting an error like this: DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.
+
+then please see here.
+https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/7282872#questions/5182316
+
+
+August 23rd, 2018 - Update:
+If you're getting an error like this: DeprecationWarning: collection.find option [fields] is deprecated and will be removed in a later version.
+
+then see here for an explanation of what's going on.
+(TL;DR: you can ignore this warning)
+
+
+
+July 5th, 2018 - Update:
+If you're getting an error like this: UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 2): MongoError: port must be specified
+
+or this:
+
+DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
+
+..then see here for the solution.  https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/7282872#questions/4613664
+
+
+Previous Notes:
+In the last lecture Colt mentioned being able to limit how many documents you could remove by chaining .limit() onto the .remove() command in mongodb. However, that was a slight oversight and that specific syntax won't work. Please see here for an example of the correct syntax.
+https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/7282872#questions/2441410
+
+Meanwhile, in the next few lectures you will learn about an Object Document Modeling (ODM) package for Express called Mongoose.
+
+You may run into two different warnings in your terminal regarding the deprecation of mpromise and open(), they will look like this:
+
+Mongoose: mpromise (mongoose's default promise library) is deprecated, plug in your own promise library
+instead: http://mongoosejs.com/docs/promises.html
+and this:
+
+`open()` is deprecated in mongoose >= 4.11.0, use `openUri()` instead,
+or set the `useMongoClient` option if using `connect()` or `createConnection()`
+
+Neither of these warnings should happen anymore if you're using MongoDB 3.6.x (or newer) and Mongoose 5.x.x (latest version) see here https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/7282872#questions/3454522 for instructions on how to update if you don't already have the latest versions of both MongoDB and Mongoose.
+
+*Note: You may want to bookmark this lecture and come back to it if you run into either of the warnings mentioned above
+https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/7282872#questions/5182316
+
+cheers,
+Ian
+
+Newest deprecation warnings as of July14, 2020:
+swasieko@DESKTOP-EMKE499 /mnt/c/users/sherry/desktop/node/campapp (master) $ node app.js
+(node:572) DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
+(node:572) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
+The Campapp server has started!
+
+mongoose.connect('mongodb://localhost:27017/cat_app', { useNewUrlParser: true });
+
+The 27017 is the port that the mongod server is running on, it's an explicit way of telling the mongoose connect string where to look for the running mongo daemon (database server).
+
+{name: 'Honey Bear Cove', image: 'https://images.pexels.com/photos/1309584/pexels-photo-1309584.jpeg?auto=compress&cs=tinysrgb&h=350'}
+
+var campgrounds = [
+  {name: 'Salmon Creek', image: "https://images.pexels.com/photos/699558/pexels-photo-699558.jpeg?auto=compress&cs=tinysrgb&h=350"},
+  {name: 'Granite Hill', image: "https://images.pexels.com/photos/1061640/pexels-photo-1061640.jpeg?auto=compress&cs=tinysrgb&h=350"},
+  {name: 'Mountain Goat Rest', image: "https://images.pexels.com/photos/2398220/pexels-photo-2398220.jpeg?auto=compress&cs=tinysrgb&h=350"},
+  {name: 'Salmon Creek', image: "https://images.pexels.com/photos/699558/pexels-photo-699558.jpeg?auto=compress&cs=tinysrgb&h=350"},
+  {name: 'Granite Hill', image: "https://images.pexels.com/photos/1061640/pexels-photo-1061640.jpeg?auto=compress&cs=tinysrgb&h=350"},
+  {name: 'Mountain Goat Rest', image: "https://images.pexels.com/photos/2398220/pexels-photo-2398220.jpeg?auto=compress&cs=tinysrgb&h=350"},
+];
