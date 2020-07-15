@@ -1,6 +1,11 @@
 var express     = require('express'),
     app         = express(),
-    bodyParser  = require('body-parser');
+    bodyParser  = require('body-parser'),
+    Campground  = require('./models/campground'),
+    seedDB      = require('./seeds');
+    // Comment     = require('./models/comment'),
+    // Users       = require('./models/user');
+
 
 const mongoose  = require('mongoose');
 
@@ -16,16 +21,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 
 
-
+seedDB();
 
 // SCHEMA SETUP
-var campgroundSchema = new mongoose.Schema({
-  name: String,
-  image: String,
-  description: String,
-});
-
-var Campground = mongoose.model('Campground', campgroundSchema);
 
 // Campground.create({name: 'Salmon Creek', image: "https://images.pexels.com/photos/699558/pexels-photo-699558.jpeg?auto=compress&cs=tinysrgb&h=350", description: 'A scenic 150-acre Civil War era farm is graced with a perfect mix of woodlands, tree-dotted meadows and grassy rolling hills. Regardless of your personal definition of camping, you will always find precisely what you need at Granite Hill. GHCR offers private tent sites, spacious pull-thru sites catering to the largest RVs and Big Rigs, as well as a wide range of options in group camping and rustic cabins in a wooded setting'},  function(err, campground){
 //   if(err){
@@ -51,7 +49,6 @@ app.get('/campgrounds', function(req, res){
       res.render('index', {campgrounds:allCampgrounds});
     }
   });
-  // res.render('campgrounds', {campgrounds:campgrounds});
 });
 
 // NEW - show form to create new campground
