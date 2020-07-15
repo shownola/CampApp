@@ -1,13 +1,13 @@
 var express     = require('express'),
     app         = express(),
     bodyParser  = require('body-parser'),
+    mongoose    = require('mongoose'),
     Campground  = require('./models/campground'),
     seedDB      = require('./seeds');
     // Comment     = require('./models/comment'),
     // Users       = require('./models/user');
 
-
-const mongoose  = require('mongoose');
+seedDB();
 
 mongoose.connect('mongodb://localhost:27017/camp_app', {
   useNewUrlParser: true,
@@ -15,25 +15,9 @@ mongoose.connect('mongodb://localhost:27017/camp_app', {
 })
 .then(() => console.log('Connected to DB!'))
 .catch(error => console.log(error.message));
-
 // mongoose.connect('mongodb://localhost/camp_app');
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
-
-
-seedDB();
-
-// SCHEMA SETUP
-
-// Campground.create({name: 'Salmon Creek', image: "https://images.pexels.com/photos/699558/pexels-photo-699558.jpeg?auto=compress&cs=tinysrgb&h=350", description: 'A scenic 150-acre Civil War era farm is graced with a perfect mix of woodlands, tree-dotted meadows and grassy rolling hills. Regardless of your personal definition of camping, you will always find precisely what you need at Granite Hill. GHCR offers private tent sites, spacious pull-thru sites catering to the largest RVs and Big Rigs, as well as a wide range of options in group camping and rustic cabins in a wooded setting'},  function(err, campground){
-//   if(err){
-//     console.log(err);
-//   } else {
-//     console.log('NEWLY CREATED CAMPGROUND');
-//     console.log(campground);
-//   }
-// });
-
 
 
 app.get('/', function(req, res){
@@ -76,11 +60,12 @@ app.post('/campgrounds', function(req, res){
 
 // SHOW
 app.get('/campgrounds/:id', function(req, res){
-  Campground.findById(req.params.id, function(err, foundCampground){
+  Campground.findById(req.params.id).populate('comments').exec(function(err, foundCampground){
     if(err){
       console.log(err);
     } else {
-      res.render('show', {campground: foundCampground})
+      console.log(foundCampground);
+      res.render('show', {campground: foundCampground});
     }
   })
 });

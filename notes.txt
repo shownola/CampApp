@@ -275,45 +275,40 @@ var data = [
     }
 ]
 
-function seedDB(){
-   //Remove all campgrounds
-   Campground.remove({}, function(err){
-        if(err){
-            console.log(err);
-        }
-        console.log("removed campgrounds!");
-        Comment.remove({}, function(err) {
-            if(err){
-                console.log(err);
-            }
-            console.log("removed comments!");
-             //add a few campgrounds
-            data.forEach(function(seed){
-                Campground.create(seed, function(err, campground){
-                    if(err){
-                        console.log(err)
-                    } else {
-                        console.log("added a campground");
-                        //create a comment
-                        Comment.create(
-                            {
-                                text: "This place is great, but I wish there was internet",
-                                author: "Homer"
-                            }, function(err, comment){
-                                if(err){
-                                    console.log(err);
-                                } else {
-                                    campground.comments.push(comment);
-                                    campground.save();
-                                    console.log("Created new comment");
-                                }
-                            });
-                    }
-                });
-            });
-        });
-    });
-    //add a few comments
-}
+node:287) DeprecationWarning: collection.remove is deprecated. Use deleteOne, deleteMany, or bulkWrite instead.
 
-module.exports = seedDB;
+ERROR-HANDLING:
+TYPE-ERROR: undefined - 'Push' must be used on an array. It cannot be used for an object. Also, there is no reference to comment from the campground model. 
+
+
+events.js:288
+      throw er; // Unhandled 'error' event
+      ^
+
+TypeError: Cannot read property 'push' of undefined
+    at /mnt/c/users/sherry/desktop/node/campapp/seeds.js:30:35
+
+In the seeds.js file line 30:
+    campground.comments.push(comment);
+
+Look to the left of 'push' gives comments. Comment is not an array it is an object so you must go the 'campground' model and enter the comment array:
+    comments: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment'
+    }]
+It was:
+    var campgroundSchema = new mongoose.Schema({
+      name: String,
+      image: String,
+      description: String,
+    });
+NOW:
+    var campgroundSchema = new mongoose.Schema({
+      name: String,
+      image: String,
+      description: String,
+      comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+      }]
+    });

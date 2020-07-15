@@ -5,4 +5,8 @@
 <p><%= campground.description %></p>
 <p><a href="/campgrounds"> All Campgrounds</a></p>
 
+<% campground.comments.forEach(function(comment){ %>
+  <p><strong><%= comment.author %></strong> - <i><%= comment.text %></i></p>
+<% }) %>
+
 <%- include('partials/footer') %>
