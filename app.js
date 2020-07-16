@@ -50,12 +50,12 @@ app.get('/campgrounds', function(req, res){
 });
 
 // NEW - show form to create new campground
-app.get('/campgrounds/new', function(req, res){
+app.get('/campgrounds/new', isLoggedIn, function(req, res){
   res.render('campgrounds/new')
 })
 
 // CREATE CAMPGROUND:
-app.post('/campgrounds', function(req, res){
+app.post('/campgrounds', isLoggedIn, function(req, res){
   // get data from form and add to cgs array then redirect back to the cgs page
   var name = req.body.name;
   var image = req.body.image;
@@ -88,7 +88,7 @@ app.get('/campgrounds/:id', function(req, res){
 //       COMMENTS ROUTES
 // =======================================================
 
-app.get('/campgrounds/:id/comments/new', function(req, res){
+app.get('/campgrounds/:id/comments/new', isLoggedIn, function(req, res){
   Campground.findById(req.params.id, function(err, campground){
     if(err){
       console.log(err);
@@ -98,7 +98,7 @@ app.get('/campgrounds/:id/comments/new', function(req, res){
   });
 });
 
-app.post('/campgrounds/:id/comments', function(req, res){
+app.post('/campgrounds/:id/comments', isLoggedIn, function(req, res){
   Campground.findById(req.params.id, function(err, campground){
     if(err){
       console.log(err);
@@ -146,6 +146,19 @@ app.post('/login', passport.authenticate('local',
   }), function(req, res){
 
 });
+
+// Logout
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/campgrounds');
+});
+
+function isLoggedIn(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect('/login');
+}
 
 
 
