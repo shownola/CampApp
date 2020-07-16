@@ -278,7 +278,7 @@ var data = [
 node:287) DeprecationWarning: collection.remove is deprecated. Use deleteOne, deleteMany, or bulkWrite instead.
 
 ERROR-HANDLING:
-TYPE-ERROR: undefined - 'Push' must be used on an array. It cannot be used for an object. Also, there is no reference to comment from the campground model. 
+TYPE-ERROR: undefined - 'Push' must be used on an array. It cannot be used for an object. Also, there is no reference to comment from the campground model.
 
 
 events.js:288
@@ -312,3 +312,17 @@ NOW:
         ref: 'Comment'
       }]
     });
+
+NESTED ROUTES WITH NODE:
+  campgrounds/:id/comments/new
+
+ERROR HANDLING:
+
+Error: /mnt/c/users/sherry/desktop/node/campapp/views/campgrounds/show.ejs:1
+ >> 1| <%- include('partials/header') %>
+
+FIX:
+  in the show page:
+    <%- include('../partials/header') %>
+
+This happened after the file restructure.
