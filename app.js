@@ -33,6 +33,11 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.use(function(req, res, next){
+  res.locals.currentUser = req.user;
+  next();
+})
+
 
 app.get('/', function(req, res){
   res.render('landing');
@@ -40,22 +45,23 @@ app.get('/', function(req, res){
 
 // INDEX - shows all campgrounds
 app.get('/campgrounds', function(req, res){
+  console.log(req.user)
   Campground.find({}, function(err, allCampgrounds){
     if(err){
       console.log(err);
     } else {
-      res.render('campgrounds/index', {campgrounds:allCampgrounds});
+      res.render('campgrounds/index', {campgrounds:allCampgrounds, currentUser: req.user});
     }
   });
 });
 
 // NEW - show form to create new campground
-app.get('/campgrounds/new', isLoggedIn, function(req, res){
+app.get('/campgrounds/new', function(req, res){
   res.render('campgrounds/new')
 })
 
 // CREATE CAMPGROUND:
-app.post('/campgrounds', isLoggedIn, function(req, res){
+app.post('/campgrounds', function(req, res){
   // get data from form and add to cgs array then redirect back to the cgs page
   var name = req.body.name;
   var image = req.body.image;

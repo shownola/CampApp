@@ -14,9 +14,13 @@
         <a href="/" class="navbar-brand">CampApp</a>
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
+          <% if(!currentUser){ %>
             <li class="pl-3"><a href="/login">Login</a></li>
             <li class="pl-3"><a href="/register">Sign Up</a></li>
+          <% } else { %>
+            <li><a>Signed In As: <i><b><%= currentUser.username %></i></b></a></li>
             <li class="pl-3"><a href="/logout">Logout</a></li>
+          <% } %>
           </ul>
         </div>
       </div>
