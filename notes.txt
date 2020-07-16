@@ -326,3 +326,20 @@ FIX:
     <%- include('../partials/header') %>
 
 This happened after the file restructure.
+
+SOURCE CODE:
+https://github.com/nax3t/webdevbootcamp
+
+Web Authentication Video:
+https://www.youtube.com/watch?v=i7of02icPyQ&feature=youtu.be&t=35
+
+AUTHENTICATION:
+Tools:
+  Passport
+  Passport local
+  Passport Local Mongoose
+Sessions:
+  Express-Session
+
+To install:
+>  npm install passport passport-local passport-local-mongoose express-session --save
