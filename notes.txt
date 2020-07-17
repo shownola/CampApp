@@ -343,3 +343,6 @@ Sessions:
 
 To install:
 >  npm install passport passport-local passport-local-mongoose express-session --save
+
+METHOD-OVERRIDE:
+npm install method-override --save
