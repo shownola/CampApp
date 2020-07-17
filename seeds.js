@@ -36,7 +36,7 @@ function seedDB(){
         }
       });
     })
-  })
+  });
 }
 // function seedDB(){
 //   Campground.remove({}, function(err){
