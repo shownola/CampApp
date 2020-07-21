@@ -18,40 +18,50 @@ var data = [
   }},
 ]
 
+// function seedDB(){
+//   Campground.deleteMany({}, function(err){
+//     if(err){
+//       console.log(err);
+//     }
+//     console.log('Removed Campgrounds');
+//     Comment.deleteMany({}, function(err){
+//       if(err){
+//         console.log(err);
+//       }
+//       console.log('removed comments');
+//       data.forEach(function(seed){
+//         Campground.create(seed, function(err, campground){
+//           if(err){
+//             console.log(err);
+//           } else {
+//             console.log('Added a campground');
+//             Comment.create({
+//               text: 'This place was great except that there was no internet', author: 'Homer'
+//             }, function(err, comment){
+//               if(err){
+//                 console.log(err);
+//               } else {
+//                 campground.comments.push(comment);
+//                 campground.save();
+//                 console.log('Created new comment');
+//
+//               }
+//             });
+//           }
+//           });
+//
+//       });
+//     })
+//   });
+// }
+
 function seedDB(){
-  Campground.deleteMany({}, function(err){
+  Campground.remove({}, function(err){
     if(err){
       console.log(err);
+    } else {
+      console.log('Removed Campgrounds!!');
     }
-    console.log('Removed Campgrounds');
-    Comment.deleteMany({}, function(err){
-      if(err){
-        console.log(err);
-      }
-      console.log('removed comments');
-      data.forEach(function(seed){
-        Campground.create(seed, function(err, campground){
-          if(err){
-            console.log(err);
-          } else {
-            console.log('Added a campground');
-            Comment.create({
-              text: 'This place was great except that there was no internet', author: 'Homer'
-            }, function(err, comment){
-              if(err){
-                console.log(err);
-              } else {
-                campground.comments.push(comment);
-                campground.save();
-                console.log('Created new comment');
-
-              }
-            });
-          }
-          });
-
-      });
-    })
   });
 }
 // function seedDB(){

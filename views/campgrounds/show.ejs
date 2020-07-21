@@ -23,10 +23,9 @@
             <a class="btn btn-xs btn-warning" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
             <form class="delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
               <button class="btn btn-xs btn-danger">Delete</button>
-          <% } %>
-
-
           </form>
+        <% } %>
+
         </div>
       </div>
       <div class="card card-body bg-light">
@@ -40,11 +39,12 @@
               <strong><%= comment.author.username %> </strong>
               <span class="float-right">10 days ago</span>
               <p><i><%= comment.text %></i></p>
+            <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
               <a href="/campgrounds/<%=campground._id %>/comments/<%= comment._id %>/edit" class="btn btn-xs btn-warning">Edit</a>
               <form action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method='POST' class="delete-form">
                 <input type="submit" class="btn btn-xs btn-danger" value="Delete">
               </form>
-
+            <% } %>
             </div>
           </div>
 
