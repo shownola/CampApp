@@ -20,11 +20,11 @@ router.post('/register', function(req, res){
   User.register(newUser, req.body.password, function(err, user){
     if(err){
       console.log(err);
-      req.flash('err', err.message);
+      req.flash('error', err.message);
       return res.render('register', {err: err.message});
     }
     passport.authenticate('local')(req, res, function(){
-      req.flash('success', 'Successfully Sign up!')
+      req.flash('success', 'Welcome to the CampApp' + user.username);
       res.redirect('/campgrounds');
     });
   });
@@ -50,13 +50,7 @@ router.get('/logout', function(req, res){
   res.redirect('/campgrounds');
 });
 
-// middleware
-function isLoggedIn(req, res, next){
-  if(req.isAuthenticated()){
-    return next();
-  }
-  res.redirect('/login');
-}
+
 
 
 module.exports = router;
