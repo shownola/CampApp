@@ -19,3 +19,8 @@ body {
   line-height: .75;
   border-radius: .2rem;
 }
+.jumbotron {
+  background-image: url('../../img/blue-greenlandscape.jpg');
+  height: 450px;
+  background-size: cover;
+}
