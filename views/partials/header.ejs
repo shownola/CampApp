@@ -9,14 +9,16 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-expand navbar-light bg-light mb-2">
+    <nav class="navbar navbar-expand-lg navbar-light bg-custom mb-2">
       <div class="container-fluid">
         <a href="/" class="navbar-brand">CampApp</a>
-        <div class="collapse navbar-collapse">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
           <% if(!currentUser){ %>
-            <li class="pl-3"><a href="/login">Login</a></li>
-            <li class="pl-3"><a href="/register">Sign Up</a></li>
+            <li class="nav-item pl-3"><a class="nav-link" href="/login">Login</a></li>
+            <li class="nav-item pl-3"><a class="nav-link" href="/register">Sign Up</a></li>
           <% } else { %>
             <li><a>Signed In As: <i><b><%= currentUser.username %></i></b></a></li>
             <li class="pl-3"><a href="/logout">Logout</a></li>
@@ -38,3 +40,6 @@
         </div>
       <% } %>
     </div>
+
+
+    <div class="container">

@@ -398,3 +398,31 @@ Lect. 358 Notes re. deleting comments for campground
 //     res.redirect('/campgrounds');
 //   }
 // })
+
+
+Camp Maggie2 is a campground located near Parrottsville, Tennessee. It features full hookup campsites that are big rig friendly. Many of them are pull through accessible. The park provides free WiFi, allows pets, and has a dump station. Amenities & Activities Campsite amenities offered include a camp store and cafe, stables, picnic tables, fire circles, and grills. It also includes basic amenities like restrooms with hot showers and laundry facilities. Visitors can also enjoy activities such as horseback riding, biking, hiking, fishing, and wildlife watching.
+
+TypeError: Cannot read property 'equals' of undefined. For thos of us with this error, I found this which may help.  Maybe we just have to wait til later in the lectures and they will fix the issue.  UPDATE: ISSUE SOLVED  so what was happening is that the campgrounds that I was trying to compare were not equal. one had a author ID, the other did not have this field in the database at all because I was created before we started logging those in the DB.  Solved by deleting all the older campgrounds that did not have that field in the DB and entering new ones under a newly created user id. route logic now actually has something to compare. server stops crashing.
+
+Also, if you're getting an error along the lines of: "req.flash is not a function", then be sure that the following line: app.use(flash());  comes before your passport configuration in app.js
+
+This appears to be a typo in Colt's code.
+Per the docs, you can either set a flash message on the req.flash object before returning a res.redirect() or you can pass the req.flash object into the res.render() function.
+
+Sorry for the confusion.
+
+Your solution is great (it follows the example in the docs), but you could also try the following:
+
+
+if(err){
+  req.flash("error", err.message);
+  return res.redirect("/register");
+}
+
+googlemap key  AIzaSyBcE7uw12D7HZjBtH-GXjm9o5p8pjZC3dA
+
+
+export GEOCODER_API_KEY=yourapikey
+or use dotenv
+to export the key in heroku:
+heroku config:set GEOCODER_API_KEY=yourapikey

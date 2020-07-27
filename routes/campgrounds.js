@@ -3,6 +3,7 @@ var router = express.Router();
 var Campground = require('../models/campground');
 var middleware = require('../middleware');
 
+
 // INDEX - shows all campgrounds
 router.get('/', function(req, res){
   console.log(req.user)
@@ -14,6 +15,8 @@ router.get('/', function(req, res){
     }
   });
 });
+
+
 
 
 // CREATE CAMPGROUND:
@@ -64,6 +67,8 @@ router.get('/:id/edit', middleware.checkCampgroundOwnership, function(req, res){
   });
 
 });
+
+
 
 // UDPATE
 router.put('/:id', middleware.checkCampgroundOwnership, function(req, res){

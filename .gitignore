@@ -1,0 +1,10 @@
+# dotenv environment variables file
+.env
+.env.test
+/node_modules
+
+
+# Logs
+logs
+*.log
+npm-debug.log*

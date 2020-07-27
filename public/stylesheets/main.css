@@ -1,3 +1,54 @@
+/* blue : #54607E;
+navy: #1B232B;
+tan: #C69F7E;
+bright-tan: #E1B680; */
+
+.bg-custom {
+  background-color: #1B232B;
+}
+.navbar-light .navbar-brand  {
+  color: #E1B680;
+  font-size: 1.6rem;
+  text-shadow: 2px 4px 4px rgba(0,0,0,0.2),
+                 0px -5px 10px rgba(255,255,255,0.15);
+  /* text-shadow: 10px 10px 25px rgb(81,67,21),
+    -10px 10px 25px rgb(81,67,21),
+    -10px -10px 25px rgb(81,67,21),
+    10px -10px 25px rgb(81,67,21); */
+    /* text-shadow: 0 2px 1px #79a06d,
+      -1px 3px 1px #82ad75,
+      -2px 5px 1px #8ebf80; */
+}
+.navbar-light .navbar-nav .nav-link {
+  color: #C69F7E;
+}
+.btn-primary {
+  background-color: #54607E;
+  color: #E1B680;
+  border: 1px solid #E1B680;
+}
+.btn-primary:hover {
+  background-color: #E1B680;
+  color: #54607E;
+  border: 1px solid #54607E;
+}
+header .jumbotron .jumbo-text h1 p {
+  color: #E1B680;
+}
+p.jumbo-text, h1.jumbo-text {
+  color: #C69F7E;
+  text-shadow: 0 -3px 0 #333,
+    0 6px 8px rgba(0,0,0,.4),
+    0 9px 10px rgba(0,0,0,.15),
+    0 30px 10px rgba(0,0,0,.18),
+    0 15px 10px rgba(0,0,0,.21);
+}
+h1.jumbo-text {
+  font-size: 2.8rem;
+}
+p.jumbo-text {
+  font-size: 1.5rem;
+}
 body {
   background: #fff;
 }
@@ -25,7 +76,12 @@ min-height {
   border-radius: .2rem;
 }
 .jumbotron {
-  background-image: url('../../img/blue-greenlandscape.jpg');
+  background-image: url('../../img/stars2.jpg');
   height: 450px;
   background-size: cover;
+}
+/* google maps */
+#map {
+  height: 400px;
+  width: 100%;
 }
