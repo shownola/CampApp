@@ -1,6 +1,9 @@
 body {
   background-color: #000;
 }
+body {
+  background: linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.9));
+}
 
 #landing-header {
   z-index: 1;
@@ -9,8 +12,23 @@ body {
   padding-top: 40vh;
 }
 #landing-header h1 {
-  color: #fff;
+  color: #E1B680;
+  text-shadow: 4px 4px 6px #000000;
+  font-weight: 400;
 }
+
+.btn-primary {
+  background-color: #54607E;
+  color: #E1B680;
+  border: 1px solid #E1B680;
+  font-size: 1.3rem;
+}
+.btn-primary:hover {
+  background-color: #E1B680;
+  color: #54607E;
+  border: 1px solid #54607E;
+}
+
 
 .slideshow {
   position: fixed;

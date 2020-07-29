@@ -1,7 +1,7 @@
 <%- include('../partials/header') %>
 
-<div class="container" style="width: 40%; margin: 0 auto;">
-  <h1 class="text-center pb-5">Edit Campground <%= campground.name %></h1>
+<div class="container" style="width: 60%; margin: 0 auto;">
+  <h1 class="text-center pb-5 display-3">Edit Campground <br/><span class="display-4"><%= campground.name %></span></h1>
 
   <form class=""  action="/campgrounds/<%= campground._id %>/?_method=PUT" method="post">
     <div class="form-group">
@@ -22,6 +22,6 @@
     </div>
   </form>
 
-  <a href="/campgrounds">Back</a>
+  <a href="/campgrounds"><span class="back">Back</span></a>
 </div>
 <%- include('../partials/footer') %>

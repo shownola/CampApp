@@ -21,7 +21,7 @@
             <li class="nav-item pl-3"><a class="nav-link" href="/register">Sign Up</a></li>
           <% } else { %>
             <li><a>Signed In As: <i><b><%= currentUser.username %></i></b></a></li>
-            <li class="pl-3"><a href="/logout">Logout</a></li>
+            <li class="pl-3"><a href="/logout"><span id="logout">Logout</span></a></li>
           <% } %>
           </ul>
         </div>

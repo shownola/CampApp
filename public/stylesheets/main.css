@@ -3,6 +3,7 @@ navy: #1B232B;
 tan: #C69F7E;
 bright-tan: #E1B680; */
 
+
 .bg-custom {
   background-color: #1B232B;
 }
@@ -22,6 +23,18 @@ bright-tan: #E1B680; */
 .navbar-light .navbar-nav .nav-link {
   color: #C69F7E;
 }
+#logout {
+  color: #C69F7E;
+}
+li a b{
+  color: #C69F7E;
+}
+.display-4 {
+  color: #1B232B;
+}
+.back {
+  color: #54607E;
+}
 .btn-primary {
   background-color: #54607E;
   color: #E1B680;
@@ -32,8 +45,28 @@ bright-tan: #E1B680; */
   color: #54607E;
   border: 1px solid #54607E;
 }
+
+.caption-full{
+  color: #54607E;
+}
+h4 a {
+  color: #C69F7E;
+}
 header .jumbotron .jumbo-text h1 p {
   color: #E1B680;
+}
+li.list-group-item.active {
+  background-color: #E1B680;
+  border: 1px solid #E1B680;
+}
+li.list-group-item.active a {
+  color: #fff;
+}
+li.list-group-item {
+  color: #C69F7E;
+}
+.btn-warning {
+  background-color: #E1B680;
 }
 p.jumbo-text, h1.jumbo-text {
   color: #C69F7E;
@@ -50,7 +83,9 @@ p.jumbo-text {
   font-size: 1.5rem;
 }
 body {
-  background: #fff;
+  /* background: #d3d3d3; */
+  /* background: #e8d8c3; */
+  background: #e1ccb1;
 }
 .img-thumbnail img {
   width: 100%;
