@@ -10,20 +10,26 @@ var express         = require('express'),
     methodOverride  = require('method-override'),
     Campground      = require('./models/campground'),
     Comment         = require('./models/comment'),
-    User            = require('./models/user');  
+    User            = require('./models/user');
     seedDB          = require('./seeds');
 
 var commentRoutes     = require('./routes/comments'),
     campgroundRoutes  = require('./routes/campgrounds'),
     indexRoutes       = require('./routes/index')
 
-mongoose.connect('mongodb://localhost:27017/camp_app', {
+// console.log(process.env.DATABASEURL);
+
+mongoose.connect(process.env.DATABASEURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
 .then(() => console.log('Connected to DB!'))
 .catch(error => console.log(error.message));
-// mongoose.connect('mongodb://localhost/camp_app');
+
+
+
+
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));

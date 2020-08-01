@@ -65,6 +65,15 @@ li.list-group-item.active a {
 li.list-group-item {
   color: #C69F7E;
 }
+.list-group-link {
+  color: #E1B680;
+}
+.list-group-item a {
+  text-decoration: none;
+}
+a .list-group-link:hover {
+  color: #b38e60;
+}
 .btn-warning {
   background-color: #E1B680;
 }

@@ -3,6 +3,8 @@
 .env.test
 /node_modules
 
+notes.txt
+
 
 # Logs
 logs
