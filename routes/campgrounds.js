@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express = require('express');
 var router = express.Router();
 var Campground = require('../models/campground');
@@ -70,7 +72,7 @@ router.post('/', middleware.isLoggedIn, upload.single('image'), function(req, re
       id: req.user._id,
       username: req.user.username
     }
-    
+
   Campground.create(req.body.campground, function(err, campground) {
     if (err) {
       req.flash('error', err.message);
